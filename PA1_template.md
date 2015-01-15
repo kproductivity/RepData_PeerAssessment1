@@ -169,10 +169,14 @@ interval.imputed = aggregate(x = activity.imputed$steps,
                                        day = activity.imputed$day),
                              FUN = "mean", na.rm = TRUE)
 
+# transform into integer so the x-scale of the diagram is right
+interval.imputed$interval = as.integer(interval.imputed$interval)
+
 library(lattice)
 
 xyplot(interval.imputed$x ~ interval.imputed$interval | interval.imputed$day,
-       data = interval.imputed, type = "l", xlab = "interval", ylab = "steps")
+       data = interval.imputed, type = "l", layout = c(1, 2),
+       xlab = "interval", ylab = "steps")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-5-1.png) 
